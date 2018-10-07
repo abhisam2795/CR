@@ -1,0 +1,94 @@
+
+ <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="TOKENS management system">
+        <link rel="stylesheet" href="/static/css/materialize.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+        <link rel="shortcut icon" href="/static/crlogo.png">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+{% block header %}
+    <div class="navbar-fixed">
+            <nav style="background-color:#17a222">
+                <div class="nav-wrapper container">
+                    <a href="/" class="brand-logo">
+                        <img class="img-responsive" style="width:75px; height:75px; margin-top: -5px; margin-left: -10px;" src="/static/images/crlogo.png">
+                    </a>
+					<a href="#" data-activates="navsidebar" class="button-collapse">
+                        <i class="mdi-navigation-menu"></i>
+                    </a>
+					<ul class="right hide-on-med-and-down">
+                        <li>
+                            <i class="material-icons md-light md-inactive">
+                                search
+                            </i>
+                        </li>
+                        <li>
+                            <form method='get' id='searchform' style='height:50px; padding-top:10px' action='/search/?l=hi'>
+                                <input name='q' id="search" type="search" placeholder="search"  style='font-size:16px'>
+                            </form> 
+                        </li>
+                        <li>
+                            <a href="/">HOME</a>
+                        </li>
+                        <li>
+                            <a href="/login/">
+                                LOG IN
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout/">
+                                LOG OUT
+                            </a>
+                        </li>
+                    </ul>
+					<ul class="side-nav" id="navsidebar">
+                        <li>
+                            <form method='get' id='searchform' style='height:50px; padding-top:10px' action='/search/?l=hi'>
+                                <input name='q' id="search" type="search" placeholder="search"  style='font-size:16px'>
+                            </form>
+                        </li>
+                        <li>
+                            <a href="/">
+                                HOME
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/user/">
+                                LOG IN
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout/">
+                                LOG OUT
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+{% endblock %}
+
+<body>
+        <div class="container-fluid" style="min-height: 100%">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {{messages}}
+            {% endif %}
+            {% endwith %}
+            {% block body %}{% endblock %}
+            
+            
+        </div>
+
+        {% block content %}
+        {% endblock %}
+
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        </body>
+        
+{% block footer %}
+{% endblock %}
