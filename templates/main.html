@@ -8,16 +8,18 @@
 {% block content %}
 <div class="container" style="max-width:1000px; min-height:100%">
             <div class="row">
+              {% for imageName in imagesList %}
+              {% set imageSource =imageFolderPath +imageName %}
                 <div class="col l4 s12 m6">
                     <a href="/data-analysis-tutorials/" class="waves-effect waves-light" style="color:#000">
                         <div class="card-panel hoverable" style="height:250px; background-color:#FFFFFF;">
                             <div class="card-image">
-                                <img class="responsive-img" src="/static/images/mainlogo-old.png" style="width:250px">
+                                <img class="responsive-img" src="{{ url_for('static',filename=imageSource)}}" style="width:75%">
                                 <br>
-                                <span class="card-title"><strong>Data Analysis</strong></span>
+                                <span class="card-title"><strong>{{imageName.split('.')[0].upper()}}</strong></span>
                             </div>
                             <div class="card-content">
-                                <p>BATTLE RAM</p>
+                                <p>{{imageName.split('.')[0].upper()}}</p>
                             </div>
                             <div class="card-action right-align">
                                 <a href="/data-analysis-tutorials/" class="waves-effect waves-light btn" style="color:#000000; background-color:#FFD166">
@@ -27,6 +29,8 @@
                         </div>
                     </a>
                 </div>
+              {% endfor%}
+
             </div>
         </div>
 {% endblock %}

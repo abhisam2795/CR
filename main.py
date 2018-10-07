@@ -1,5 +1,6 @@
 from flask import Flask,render_template,flash,request,url_for,redirect
 from content_management import Content
+from DirectoryManager import getDirectories
 
 TOPIC_DICT = Content()
 
@@ -7,7 +8,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return render_template('main.html')
+    imageFolderPath = "images/cards/"
+    imagesList = getDirectories("./static/"+imageFolderPath)
+    return render_template('main.html',imagesList = imagesList,imageFolderPath = imageFolderPath)
 
 @app.route('/dashboard/')
 def dashboard():
