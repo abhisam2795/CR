@@ -2,8 +2,12 @@
  <head>
         <meta charset="utf-8">
         <title>{% block title %}{% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="TOKENS management system">
+        <link rel="stylesheet" href="/static/css/materialize.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+        <link rel="shortcut icon" href="/static/crlogo.png">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 {% block header %}
     <div class="navbar-fixed">
