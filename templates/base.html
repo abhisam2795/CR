@@ -35,8 +35,8 @@
                             </i>
                         </li>
                         <li>
-                            <form method='get' id='searchform' style='height:50px; padding-top:10px' action='/search/?l=hi'>
-                                <input name='q' id="search" type="search" placeholder="search"  style='font-size:16px'>
+                            <form method='post' id='searchform' style='height:50px; padding-top:10px' action='/search/'>
+                                <input name='q' id="search" type="search" placeholder="search"  style='font-size:16px' value = {{request.form.username}}>
                             </form> 
                         </li>
                         <li>
@@ -52,10 +52,15 @@
                                 LOG OUT
                             </a>
                         </li>
+                        <li>
+                            <a href="/playerTag/">
+                                PlayerTag
+                            </a>
+                        </li>
                     </ul>
 					<ul class="side-nav" id="navsidebar">
                         <li>
-                            <form method='get' id='searchform' style='height:50px; padding-top:10px' action='/search/?l=hi'>
+                            <form method='post' id='searchform' style='height:50px; padding-top:10px' action='/search/'>
                                 <input name='q' id="search" type="search" placeholder="search"  style='font-size:16px'>
                             </form>
                         </li>
