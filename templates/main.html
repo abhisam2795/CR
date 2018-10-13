@@ -12,15 +12,15 @@
               {% set imageSource =imageFolderPath +imageName %}
                 <div class="col l4 s12 m6">
                     <a href="/data-analysis-tutorials/" class="waves-effect waves-light" style="color:#000">
-                        <div class="card-panel hoverable" style="height:250px; background-color:#FFFFFF;">
+                        <div class="card-panel hoverable" style="height:75px; background-color:#FFFFFF; width: 75px">
                             <div class="card-image">
-                                <img class="responsive-img" src="{{ url_for('static',filename=imageSource)}}" style="width:75%">
+                                <img class="responsive-img" src="{{ url_for('static',filename=imageSource)}}" style="max-height: 100%;max-width: 100%">
                                 <br>
-                                <span class="card-title"><strong>{{imageName.split('.')[0].upper()}}</strong></span>
+                                <span class="card-title"><strong></strong></span>
                             </div>
-                            <div class="card-content">
+                            <!--<div class="card-content">
                                 <p>{{imageName.split('.')[0].upper()}}</p>
-                            </div>
+                            </div>-->
                             <div class="card-action right-align">
                                 <a href="/data-analysis-tutorials/" class="waves-effect waves-light btn" style="color:#000000; background-color:#FFD166">
                                     View
