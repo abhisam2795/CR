@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Rename Title
+{% endblock %}
+
+{% block content %}
+<div class = "Container" style="max-width:1000px; max-height:150px"> 
+	<div class="cardsWhichAreDonatable">
+    <p> Cards donatable</p>
+            <div class="row">
+              {% for imageName in cardsWhichAreDonatable %}
+              {% if '.png' not in  imageName %}
+              {% set imageName = imageName | replace(".","") %}
+                  {% set imageName = imageName +".png" %}
+              {% endif %}
+              {% set imageSource =imageFolderPath +imageName %}
+              
+
+                <div class="col l4 s12 m6">
+                    <a href="/data-analysis-tutorials/" class="waves-effect waves-light" style="color:#000">
+                        <div class="card-panel hoverable" style="height:150px; background-color:#FFFFFF;">
+                            <div class="card-image">
+                                <img class="responsive-img" src="{{ url_for('static',filename=imageSource)}}" style="width:80px">
+                                <br>
+                                <span class="card-title"><strong>{{imageName.split('.')[0].upper()}}</strong></span>
+                            </div>
+                        
+                            
+                        </div>
+                    </a>
+                </div>
+              {% endfor%}
+
+            </div>
+  </div>
+
+  <div class="cardsHaving">
+    <p> Cards Player Has </p>
+            <div class="row">
+              {% for imageName in cardsHaving %}
+              {% if '.png' not in  imageName %}
+              {% set imageName = imageName | replace(".","") %}
+                  {% set imageName = imageName +".png" %}
+              {% endif %}
+              {% set imageSource =imageFolderPath +imageName %}
+              
+
+                <div class="col l4 s12 m6">
+                    <a href="/data-analysis-tutorials/" class="waves-effect waves-light" style="color:#000">
+                        <div class="card-panel hoverable" style="height:150px; background-color:#FFFFFF;">
+                            <div class="card-image">
+                                <img class="responsive-img" src="{{ url_for('static',filename=imageSource)}}" style="width:80px">
+                                <br>
+                                <span class="card-title"><strong>{{imageName.split('.')[0].upper()}}</strong></span>
+                            </div>
+                        
+                            
+                        </div>
+                    </a>
+                </div>
+              {% endfor%}
+
+            </div>
+  </div>
+
+  <div class="cardsNotUnlocked" >
+    <p> Cards that are  Not Unlocked  </p>
+            <div class="row">
+              {% for imageName in cardsNotUnlocked %}
+              {% if '.png' not in  imageName %}
+              {% set imageName = imageName | replace(".","") %}
+                  {% set imageName = imageName +".png" %}
+              {% endif %}
+              {% set imageSource =imageFolderPath +imageName %}
+              
+
+                <div class="col l4 s12 m6">
+                    <a href="/data-analysis-tutorials/" class="waves-effect waves-light" style="color:#000">
+                        <div class="card-panel hoverable" style="height:150px; background-color:#FFFFFF;">
+                            <div class="card-image">
+                                <img class="responsive-img" src="{{ url_for('static',filename=imageSource)}}" style="width:80px">
+                                <br>
+                                <span class="card-title"><strong>{{imageName.split('.')[0].upper()}}</strong></span>
+                            </div>
+                        
+                            
+                        </div>
+                    </a>
+                </div>
+              {% endfor%}
+
+            </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footerposition %}
+        none
+{% endblock %}
