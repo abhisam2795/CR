@@ -5,96 +5,108 @@
 {% endblock %}
 
 {% block content %}
-<div class = "Container" style="max-width:1000px; max-height:150px"> 
-	<div class="cardsWhichAreDonatable">
-    <p> Cards donatable</p>
-            <div class="row">
-              {% for imageName in cardsWhichAreDonatable %}
-              {% if '.png' not in  imageName %}
-              {% set imageName = imageName | replace(".","") %}
-                  {% set imageName = imageName +".png" %}
-              {% endif %}
-              {% set imageSource =imageFolderPath +imageName %}
-              
+<script type="text/javascript">
+  
+    function imageClicked(name) {
+      var nameList = document.getElementsByName(name);
+      for(var i = 0;i<nameList.length;i++)
+      { 
+          var element = nameList[i];
+          if(element.style.opacity == "0.9")
+          {
+            element.style.maxWidth = "80px";
+            element.style.maxHeight = "100px";
+            element.style.minWidth = "80px";
+            element.style.minHeight = "100px";
+            element.style.border = "none";
+            element.style.opacity = "1";
+          }
+          else
+          {
+            element.style.maxWidth = "60px";
+            element.style.maxHeight = "80px";
+            element.style.minWidth = "60px";
+            element.style.minHeight = "80px";
+            element.style.border = "solid";
+            element.style.borderColor = "blue";
+            element.style.borderRadius  = "10px";
+            element.style.opacity = "0.9";
+          }
+      }
 
-                <div class="col l4 s12 m6">
-                    <a href="/data-analysis-tutorials/" class="waves-effect waves-light" style="color:#000">
-                        <div class="card-panel hoverable" style="height:150px; background-color:#FFFFFF;">
-                            <div class="card-image">
-                                <img class="responsive-img" src="{{ url_for('static',filename=imageSource)}}" style="width:80px">
-                                <br>
-                                <span class="card-title"><strong>{{imageName.split('.')[0].upper()}}</strong></span>
-                            </div>
-                        
-                            
-                        </div>
-                    </a>
-                </div>
-              {% endfor%}
 
-            </div>
+      
+    }
+</script>
+  <div class = "Container -cardDetail" style="min-width: 100%; padding: 2%"> 
+    <div class="row">
+    {% for key, value in cardDetailsList.items() %}
+      <div class="column hoverable" 
+      style="min-width : 33%;max-width:33%; min-height:100%; padding-left: :10px; padding-right: 10px;">
+      <div class = "Type" style="background-color: green;colorborderRadius : wh10e;min-height: 50px min-width:100%">
+        <p><center>{{key}}</center></p>
+      </div>
+      <div class="row" style="padding-bottom: 15px;padding-right: 15px;padding-left: 15px">
+      {% for imageName in value %}
+        {% if '.png' not in  imageName %}
+        {% set imageName = imageName | replace(".","") %}
+        {% set imageName = imageName +".png" %}
+        {% endif %}
+        {% set imageSource =imageFolderPath +imageName %}
+        {% set imageNameCardId = imageName | replace(" ","") %}
+        {% set imageNameCardId = imageNameCardId | replace(".png","") %}
+        {% set imageNameCardId = imageNameCardId + '-img'%}
+        {% if loop.index  == 1 %}
+
+          <div class="row" style="padding-left: -15px">
+              <div class="column" style="min-width: 15%;max-width: 15%; padding-left: 45px;padding-right: 45px">
+                  <div class="card-image" style="padding:8.7px">
+          <img class="responsive-img" name = {{imageNameCardId}} src="{{ url_for('static',filename=imageSource)}}" style="max-height: 100px;max-width: 80px;min-width: 80px;min-height: 100px" onclick="imageClicked('{{imageNameCardId}}')"/>
+          
+        </div>
+              </div>
+        {% endif %}
+
+        {% if loop.index is divisibleby 4 and loop.index  != 1 %}
+          
+              <div class="column" style="min-width: 15%;max-width: 15%; padding-left: 45px;padding-right: 45px">
+                  <div class="card-image" style="padding:8.7px">
+          <img class="responsive-img" name = {{imageNameCardId}} src="{{ url_for('static',filename=imageSource)}}" style="max-height: 100px;max-width: 80px;min-width: 80px;min-height: 100px" onclick="imageClicked('{{imageNameCardId}}')"/>
+          
+        </div>
+              </div>
+        </div>
+        <div class="row">
+        {% elif loop.index  != 1%}
+            <div class="column" style="min-width: 15%;max-width: 15%; padding-left: 45px;padding-right: 45px">
+                  <div class="card-image" style="padding:8.7px">
+          <img class="responsive-img" name = {{imageNameCardId}} src="{{ url_for('static',filename=imageSource)}}" style="max-height: 100px;max-width: 80px;min-width: 80px;min-height: 100px" onclick="imageClicked('{{imageNameCardId}}')"/>
+          
+        </div>
+              </div>
+        {% endif %}
+
+        {% if loop.index == loop.length and loop.index is not divisibleby 4 %}
+        </div>
+        {%endif%}
+
+        
+        {% if '.png' not in  imageName %}
+        {% set imageName = imageName | replace(".","") %}
+        {% set imageName = imageName +".png" %}
+        {% endif %}
+        {% set imageSource =imageFolderPath +imageName %}
+      
+      {% endfor %}
+      </div>
+      </div>
+
+    {% endfor%}
+
+    </div>            
   </div>
-
-  <div class="cardsHaving">
-    <p> Cards Player Has </p>
-            <div class="row">
-              {% for imageName in cardsHaving %}
-              {% if '.png' not in  imageName %}
-              {% set imageName = imageName | replace(".","") %}
-                  {% set imageName = imageName +".png" %}
-              {% endif %}
-              {% set imageSource =imageFolderPath +imageName %}
-              
-
-                <div class="col l4 s12 m6">
-                    <a href="/data-analysis-tutorials/" class="waves-effect waves-light" style="color:#000">
-                        <div class="card-panel hoverable" style="height:150px; background-color:#FFFFFF;">
-                            <div class="card-image">
-                                <img class="responsive-img" src="{{ url_for('static',filename=imageSource)}}" style="width:80px">
-                                <br>
-                                <span class="card-title"><strong>{{imageName.split('.')[0].upper()}}</strong></span>
-                            </div>
-                        
-                            
-                        </div>
-                    </a>
-                </div>
-              {% endfor%}
-
-            </div>
-  </div>
-
-  <div class="cardsNotUnlocked" >
-    <p> Cards that are  Not Unlocked  </p>
-            <div class="row">
-              {% for imageName in cardsNotUnlocked %}
-              {% if '.png' not in  imageName %}
-              {% set imageName = imageName | replace(".","") %}
-                  {% set imageName = imageName +".png" %}
-              {% endif %}
-              {% set imageSource =imageFolderPath +imageName %}
-              
-
-                <div class="col l4 s12 m6">
-                    <a href="/data-analysis-tutorials/" class="waves-effect waves-light" style="color:#000">
-                        <div class="card-panel hoverable" style="height:150px; background-color:#FFFFFF;">
-                            <div class="card-image">
-                                <img class="responsive-img" src="{{ url_for('static',filename=imageSource)}}" style="width:80px">
-                                <br>
-                                <span class="card-title"><strong>{{imageName.split('.')[0].upper()}}</strong></span>
-                            </div>
-                        
-                            
-                        </div>
-                    </a>
-                </div>
-              {% endfor%}
-
-            </div>
-  </div>
-</div>
-
 {% endblock %}
+
 
 {% block footerposition %}
         none
