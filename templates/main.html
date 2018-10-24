@@ -6,11 +6,72 @@
 {% endblock %}
 
 {% block content %}
-<div class="container" style="max-width:1000px; min-height:100%; padding-bottom:100px">
+
+<div class="ui attached  segment margin0  border0">
+    <div id="tag-search-tabs" class="ui container sidemargin0">
+        <div class="ui top attached pointing secondary tabular menu">
+            <a class="item active" data-tab="player">Player</a>
+            <a class="item" data-tab="clan_tag">Clan Tag</a>
+            <a class="item" data-tab="clan_name">Clan Name</a>
+            <div class="item mobile-hide">Check your chests or look up players and clans.</div>
+        </div>
+        <div class="ui bottom attached tab segment active player_search_segment" data-tab="player">
+            <form id="player_search_form" class="ui fluid form" action="/player">
+                <div class="field">
+                    <div class="ui error message pointing below red  label">Please enter a value</div>
+                    <div class="ui search">
+                        <div class="ui transparent icon input">
+                            <input name="tag" type="text" class="prompt" placeholder="Player name or tag e.g. C0G20PR2" />
+                            <i class="search link icon"></i>
+                        </div>
+                        <div class="results" style="text-align:left;"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="clan_tag">
+            <form id="clan_tag_search_form" class="ui fluid form" action="/clan">
+                <div class="field">
+                    <div class="ui error message pointing below red  label">Please enter a value</div>
+                    <div class="ui search">
+                        <div class="ui transparent icon input">
+                            <input name="tag" type="text" class="prompt" placeholder="Clan name or tag e.g. 2CCCP" />
+                            <i class="search link icon"></i>
+                        </div>
+                        <div class="results" style="text-align:left;"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="clan_name">
+            <form id="clan_name_search_form" class="ui fluid form" action="/clans/search">
+                <div class="field">
+                    <div class="ui error message pointing below red label">Please enter a value</div>
+                    <div class="ui transparent icon input">
+                        <input name="name" type="text" class="prompt" placeholder="Clan name (minimum 3 characters)" />
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<form class="form-inline" style="padding-left: 200px">
+    <h5>PLAYER TAG : </h5>
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="inputPassword2" class="sr-only">Password</label>
+        <input type="text" class="form-control" id="playerTag" placeholder="Player Tag. eg: #2LL9PUR9">
+    </div>
+    <button type="button" class="btn btn-outline-dark btn-sm">Submit</button>
+</form>
+<div class="container" style="max-width:750px; min-height:100%">
             <div class="row">
               {% for imageName in imagesList %}
               {% set imageSource =imageFolderPath +imageName %}
-                <div class="col l4 s12 m6">
+                <div class="col l3 s10 m9">
                     <a href="/data-analysis-tutorials/" class="waves-effect waves-light" style="color:#000">
                         <div class="card-panel hoverable" style="height:75px; background-color:#FFFFFF; width: 75px">
                             <div class="card-image">
@@ -18,17 +79,14 @@
                                 <br>
                                 <span class="card-title"><strong></strong></span>
                             </div>
-                            <!--<div class="card-content">
-                                <p>{{imageName.split('.')[0].upper()}}</p>
-                            </div>-->
-                            <div class="card-action right-align">
-                                <a href="/data-analysis-tutorials/" class="waves-effect waves-light btn" style="color:#000000; background-color:#FFD166">
-                                    View
-                                </a>
-                            </div>
                         </div>
                     </a>
                 </div>
+               <!--<div class="card-panel hoverable" style="height:75px; background-color:#FFFFFF; width: 75px">
+                    <div class="card-image">
+                        <img class="responsive-img" src="{{ url_for('static',filename=imageSource)}}" style="height: 100%;width: 100%">
+                    </div>
+                </div>-->
               {% endfor%}
 
             </div>
@@ -36,6 +94,3 @@
 {% endblock %}
 
 
-{% block footerposition %}
-        none
-{% endblock %}
